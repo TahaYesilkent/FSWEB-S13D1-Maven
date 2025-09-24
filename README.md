@@ -1,79 +1,125 @@
-# Introduction To Java :)
+# Java Mini Proje - Metot Alıştırmaları
 
-### Proje Kurulumu
+Bu proje, Java dilinde temel **metot tanımlama**, **koşullar**, ve **return değerleri** kullanılarak yazılmış örneklerden oluşmaktadır.  
+Program içerisinde farklı senaryolar için metotlar yazılmış ve `main` metodu içinde test edilmiştir.
 
-Projeyi öncelikle forklayın ve clone edin.
-Daha sonra projeyi IntellijIDEA kullanarak açınız. README.md dosyasını dikkatlı bir şekilde okuyarak istenenleri yapmaya çalışın.
-Proje sayımız ilerledikçe proje yönetimimizi kolaylaştırmak adına projelerimizi belli klasör kalıplarında saklamak işimizi kolaylaştırmak adına iyi bir alışkanlıktır.
-Örnek bir Lokasyon: Workintech/Sprint_1/Etud.
+---
 
-### Hedeflerimiz:
+## İçindekiler
+1. [Barking Dog](#barking-dog)
+2. [Teenage](#teenage)
+3. [Cat Playing](#cat-playing)
+4. [Area Hesaplama](#area-hesaplama)
+5. [Area Cylinder (Çember Alanı)](#area-cylinder-çember-alanı)
 
-### Havlayan Köpeğimiz
+---
 
-* Havlamayı seven bir köpeğimiz var. Eğer köpeğimiz geceleri havlarsa uyanacağız ama gündüzleri havlarsa tepki vermeyeceğimiz bir metod yazmaya çalışacağız.
-* ```shouldWakeUp``` isimli metodumuz 2 tane parametre almalı. İlk parametre ```boolean``` olmalı ve köpeğin şu an havlayıp havlamadığını tutmalı.
-* İkinci parametremiz ```int``` değer almalı. 0-23 arasında değer alabilir. Köpeğimiz akşam 8 ile sabah 8 arasında havlıyorsa metod ```true``` değer dönmeli.
-* Diğer şartlar altında metodumuz ```false``` değer dönmeli.
-* İkinci parametre 0'dan küçükse ya da 23'den büyükse metodumuz yine ```false``` değer dönmeli.
+## 1. Barking Dog
+Metot:  
+```java
+public static boolean shouldWakeUp(boolean isBarking, int clock)
+Parametreler:
 
+isBarking: Köpek havlıyor mu?
 
-shouldWakeUp (true, 1); => true dönmeli(Gece 1'de köpeğimiz havlıyor)
+clock: Saat (0–23 arasında değer almalı)
 
-shouldWakeUp (false, 2); => false dönmeli.(köpek havlamıyor.)
+Kurallar:
 
-shouldWakeUp (true, 8); => false dönmeli.(8'den sonra ise tepki vermeliyiz.)
+Saat geçersiz (<0 veya >23) → false
 
-shouldWakeUp (true, -1); => false dönmeli(-1 geçersiz değer)
+Köpek havlıyorsa ve saat 8’den önce veya 20’den sonra → true
 
+Diğer durumlar → false
 
-### Yaş Tespiti
+2. Teenage
+Metot:
 
-* ```hasTeen``` isimli 3 tane parametre alan bir metod yazmak istiyoruz.
-* 3 parametreden herhangi biri eğer 13-19 arasındaysa metod ```true``` değer dönmeli
-* Diğer şartlarda ```false``` değer dönmeli.
+java
+Kodu kopyala
+public static boolean hasTeen(int firstAge, int secondAge, int thirdAge)
+Parametreler: Üç farklı yaş değeri
 
-hasTeen(9, 99, 19); => true dönmeli.(19 değerinden dolayı)
+Kurallar:
 
-hasTeen(23, 15, 42); => true dönmeli.(15 değerinden dolayı)
+Yaşlardan herhangi biri 13–19 aralığında ise → true
 
-hasTeen(22, 23, 34); => false dönemli(Hiçbir değer 13-19 arasında değil.)
+Hiçbiri bu aralıkta değilse → false
 
+3. Cat Playing
+Metot:
 
+java
+Kodu kopyala
+public static boolean isCatPlaying(boolean isSummer, int temp)
+Parametreler:
 
-### Oyuncu Kedi
+isSummer: Yaz mevsimi mi?
 
-* Oyun oynamayı çok seven bir kedimiz var. Kedimizin oyun oynadığı zamanları tespit etmek için bir metod yazacağız.
-* Kedimiz sıcaklık 25 ile 35 arasındaysa oyun oynuyor olucak. Eğer mevsim yaz değilse. Mevsim yaz ise üst limit 35 yerine 45 olmalı.
-* ```isCatPlaying``` isimli 2 tane parametre alan bir metod yazmak istiyoruz. Eğer kedi oyun oynuyorsa metodumuz ```true``` değer dönecek. Oyun oynamıyorsa ```false``` değer dönecek.
-* İlk parametre ```boolean``` değer tutmalı ve mevsimin yaz olup olmadığını kontrol etmeli
-* İkinci parametre ```int``` olamlı ve sıcaklık değerini tutmalı.
+temp: Sıcaklık
 
+Kurallar:
 
-isCatPlaying(true, 10); => false dönmeli(sıcaklık 25-45 arasında olmalıydı)
+Yaz aylarında → kedi 25–45°C aralığında oynar
 
-isCatPlaying(false, 36); => false dönmeli(sıcaklık 25-35 arasında olmalıydı)
+Yaz değilse → kedi 25–35°C aralığında oynar
 
-isCatPlaying(false, 35); => true dönmeli(sıcaklık 25-35 arasında.)
+Diğer durumlar → false
 
+4. Area Hesaplama
+Metot:
 
-### Alan Hesaplama
+java
+Kodu kopyala
+public static double area(double width, double height)
+Parametreler: width, height
 
-* Dikdörtgenin alanını hesaplamak için bir metod yazınız. Metodun ismi ```area``` olmalı.
-* İki tane ```double``` parametre almalı ve bu parametreleri kullanıcıdan almalı.
-* Eğer parametrelerden herhangi biri negatif değer alırsa, alan negatif olamayacağından metod ```-1``` değer dönerek yanlış bir işlem yapıldığını belirtmeli.
-* Metod iki değeri birbiriyle çarpmalı ve değeri ```return``` etmeli.
+Kurallar:
 
-area(5.0, 4.0); => 20.0 değerini dönmeli.
+Eğer değerler negatifse → -1
 
-area(-1.0, 4.0); => -1 değerini dönmeli.
+Aksi durumda dikdörtgen alanı → width * height
 
-* Bir tane daha ```area``` isimli bir metod tanımla. Amacımız dairenin alanını hesaplamak.
-* bu sefer tek bir ```double``` parametresi almalı. İsmi radius olabilir. Bu parametrede kullanıcıdan alınmalı.
-* parametre negatif bir dğer alırsa metod yine -1 dönmeli.
-* Diğer şartlarda metod ```radius*radius*Math.PI``` değerini dönmeli
-* Math.PI kullandığında ```java.lang``` paketinde olduğu otomatik `import` ediliyor, ekstra bir şey yapmana gerek yok. 
+5. Area Cylinder (Çember Alanı)
+Metot:
 
-area(5.0); => 78.53975 değerini dönmeli
+java
+Kodu kopyala
+public static double area(double radius)
+Parametreler: radius
 
-area(-1); => -1 değerini dönmeli.
+Kurallar:
+
+Eğer radius < 0 → -1
+
+Aksi durumda daire alanı → radius * radius * Math.PI
+
+Örnek Çalıştırma Çıktısı
+Program çalıştırıldığında ekrana aşağıdakine benzer sonuçlar basılır:
+
+sql
+Kodu kopyala
+---------------------------------------------------- 
+Barking Dog
+Result 1 true
+Result 2 false
+Result 3 false
+Result 4 false
+---------------------------------------------------- 
+Teenage
+Result 1 true
+Result 2 true
+Result 3 false
+---------------------------------------------------- 
+Cat Playing 
+Result 1 false
+Result 2 false
+Result 3 true
+---------------------------------------------------- 
+Area
+Result 1 = 20.0
+Result 2 = -1.0
+---------------------------------------------------- 
+Area Cylinder
+Result 1 = 78.53981633974483
+Result 2 = -1.0
